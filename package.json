@@ -1,0 +1,22 @@
+{
+  "name": "theworldthroughmylenses",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zimzamyoyoman/The-World-Through-My-Lenses.git"
+  },
+  "author": "Samarth Goyal",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zimzamyoyoman/The-World-Through-My-Lenses/issues"
+  },
+  "homepage": "https://github.com/zimzamyoyoman/The-World-Through-My-Lenses#readme",
+  "dependencies": {
+    "express": "^4.16.4"
+  }
+}
