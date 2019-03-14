@@ -18,6 +18,7 @@
   "homepage": "https://github.com/zimzamyoyoman/The-World-Through-My-Lenses#readme",
   "dependencies": {
     "ejs": "^2.6.1",
-    "express": "^4.16.4"
+    "express": "^4.16.4",
+    "sass": "^1.17.2"
   }
 }
