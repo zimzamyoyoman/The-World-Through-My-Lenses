@@ -4,11 +4,19 @@
 
 <h1> This Works </h1>
 
-<form action="/theworldthroughmylenses/addpost" method="POST">
+<!-- <form action="/theworldthroughmylenses/addpost" method="POST">
     <input type="text" name="newPost" placeholder="name">
     <button> Add new post </button>
-</form>
+</form> -->
 
+<% blogPosts.forEach(function(blogPost) { %>
+    <div>
+        <h4> <%=blogPost.title %> </h4>
+        <img src="<%= blogPost.image %>">
+        <p> <%=blogPost.content %> </p>
+    </div>
+   
+<% }) %>
 
 
 <% include partials/footer %>
