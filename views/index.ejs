@@ -6,10 +6,22 @@
     <button> Add new post </button>
 </form> -->
 
-<div class="container">
-    <div class="row">
-        <% blogPosts.forEach(function(blogPost) { %>        
-            <div class="col-4">
+<div class="container-fluid grid mt-3 mb-3">
+    <div class="row mb-3">
+            <div class="col-12 col-lg-3 grid-item mb-3">
+                    <div class="card">
+                        <img src="https://drive.google.com/uc?id=0BwWCumuqN4wPWG1aVHhjY3VxRms" class="card-img-top" alt="">
+                                      
+                        <div class=" card-body">
+                            <h4> Samarth Goyal </h4>
+                            <p class="card-text"> Some stuff about me </p>
+                        </div>
+                    </div>
+            </div>
+
+        <% blogPosts.forEach(function(blogPost) { %>   
+            <!-- FOR DIFFERENT POST TYPES, WE WILL HAVE DIFFERENT GRID SIZES AND COLUMNS AND DIFFERENT CLASSES ACCORDINGLY!      -->
+            <div class="col-12 col-sm-6 col-lg-3 grid-item mb-3">
                 <div class="card-group">
                     <div class="card">
                         <img src="<%= blogPost.image %>" class="card-img-top" alt="<%=blogPost.quote %>"">
@@ -19,14 +31,18 @@
                             <p class="card-text"> <%=blogPost.content %> </p>
                         </div>
 
-                        <div class="card-footer text-muted">
+                        <!-- <div class="card-footer text-muted footer">
                             <div class="btn-group" role="group" aria-label="Basic example">
-                                <div> <button type="button" class="btn btn-secondary"> 2 Days Ago </button> </div>
-                                <div> <button type="button" class="btn btn-secondary"> LIKE </button> </div>
-                                <div> <button type="button" class="btn btn-secondary"> SHARE</button> </div>
-                                <div> <button type="button" class="btn btn-secondary"> COMMENT </button> </div>
+                                <div class="row">
+                                    <div class="container-fluid">
+                                            <div class="col-3"> <button type="button" class="btn btn-secondary footer-buttons"> 2 Days Ago </button> </div>
+                                            <div class="col-3"> <button type="button" class="btn btn-secondary footer-buttons"> LIKE </button> </div>
+                                            <div class="col-3"> <button type="button" class="btn btn-secondary footer-buttons"> SHARE</button> </div>
+                                            <div class="col-3"> <button type="button" class="btn btn-secondary footer-buttons"> COMMENT </button> </div>
+                                    </div>
+                                </div>  
                             </div>
-                        </div>
+                        </div> -->
                     </div>
                 </div>
             </div>

@@ -1,4 +1,8 @@
 .card {
-    width: 25rem;
+    /* width: 25rem; */
     display: inline-block;
+}
+
+.grid-item {
+    width: 25rem;
 }
