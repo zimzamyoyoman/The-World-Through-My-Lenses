@@ -1,8 +1,15 @@
-.card {
-    /* width: 25rem; */
+/* .card {
+    width: 25rem;
     display: inline-block;
+} */
+
+/* .grid-item {
+    width: 25rem;
+} */
+
+#grid[data-columns]::before {
+	content: '4 .column.size-1of4';
 }
 
-.grid-item {
-    width: 25rem;
-}
+.column { float: left; }
+.size-1of4 { width: 33.333%; }
