@@ -1,11 +1,6 @@
 <!-- <link rel="stylesheet" href="app.css"> -->
 <% include partials/header %>
 
-<!-- <form action="/theworldthroughmylenses/addpost" method="POST">
-    <input type="text" name="newPost" placeholder="name">
-    <button> Add new post </button>
-</form> -->
-
 <div class="container-fluid grid mt-3 mb-3">
             <div class="grid-item mb-3">
                     <div class="card">
@@ -20,7 +15,8 @@
 
         <% blogPosts.forEach(function(blogPost) { %>   
             <!-- FOR DIFFERENT POST TYPES, WE WILL HAVE DIFFERENT GRID SIZES AND COLUMNS AND DIFFERENT CLASSES ACCORDINGLY!      -->
-            <div class="grid-item grid-item--width2 mb-3">
+            <!-- <div class="grid"> -->
+            <div class="grid-item grid-item--width1 mb-3">
                 <div class="card-group">
                     <div class="card">
                         <img src="<%= blogPost.image %>" class="card-img-top" alt="<%=blogPost.quote %>"">
@@ -49,8 +45,8 @@
     </div>
 
 
-
-</div>
+<!-- 
+</div> -->
 
 
 
