@@ -6,22 +6,26 @@
     <button> Add new post </button>
 </form> -->
 
-<div class="container-fluid grid mt-3 mb-3">
-    <div class="row mb-3">
-            <div class="col-12 col-lg-3 grid-item mb-3">
-                    <div class="card">
-                        <img src="https://drive.google.com/uc?id=0BwWCumuqN4wPWG1aVHhjY3VxRms" class="card-img-top" alt="">
+<div class="container-fluid mt-3 mb-3">
+    
+    
+    <!-- <div class="row mb-3">
+        <div class="col-12 col-lg-3 grid-item mb-3">
+            <div class="card">
+                <img src="https://drive.google.com/uc?id=0BwWCumuqN4wPWG1aVHhjY3VxRms" class="card-img-top" alt="">
                                       
-                        <div class=" card-body">
-                            <h4> Samarth Goyal </h4>
-                            <p class="card-text"> Some stuff about me </p>
-                        </div>
-                    </div>
+                <div class=" card-body">
+                    <h4> Samarth Goyal </h4>
+                    <p class="card-text"> Some stuff about me </p>
+                </div>
             </div>
+        </div>
+    </div> -->
 
         <% blogPosts.forEach(function(blogPost) { %>   
-            <!-- FOR DIFFERENT POST TYPES, WE WILL HAVE DIFFERENT GRID SIZES AND COLUMNS AND DIFFERENT CLASSES ACCORDINGLY!      -->
-            <div class="col-12 col-sm-6 col-lg-3 grid-item mb-3">
+            <!-- FOR DIFFERENT POST TYPES, WE WILL HAVE DIFFERENT GRID SIZES AND COLUMNS AND DIFFERENT CLASSES ACCORDINGLY!  ADD IF STATEMENTS OR A SWITCH CASE! -->
+        <div class="row">
+            <div class="col-12 col-sm-6 col-lg-3 mb-3">
                 <div class="card-group">
                     <div class="card">
                         <img src="<%= blogPost.image %>" class="card-img-top" alt="<%=blogPost.quote %>"">
@@ -51,7 +55,7 @@
 
 
 
-</div>
+<!-- </div> -->
 
 
 
