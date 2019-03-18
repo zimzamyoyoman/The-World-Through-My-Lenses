@@ -1,7 +1,6 @@
-<!-- <link rel="stylesheet" href="app.css"> -->
 <% include partials/header %>
 
-<div id="grid" data-columns class="container-fluid mt-3">
+<div class="container-fluid mt-3">
 <% blogPosts.forEach(function(blogPost) { %>
     <div class="card mx-3 my-3">
         <img src="<%= blogPost.image %>" class="card-img-top" alt="<%=blogPost.quote %>"">
