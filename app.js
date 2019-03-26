@@ -1,7 +1,7 @@
-var express = require("express");
-var app = express();
-var bodyParser = require("body-parser");
-var mongoose = require("mongoose");
+var express     = require("express"),
+    app         = express(),
+    bodyParser  = require("body-parser"),
+    mongoose    = require("mongoose");
 
 mongoose.connect("mongodb://localhost/blog", {useNewUrlParser: true});
 
@@ -47,10 +47,17 @@ app.set("view engine", "ejs");
 //     {title: "Second Post", image: "https://images.unsplash.com/photo-1552432134-191ce4bdf1f7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60", content: "Praesent in odio non odio sodales venenatis. Aenean rutrum faucibus efficitur. Morbi euismod neque augue, non finibus enim faucibus nec. Maecenas gravida, risus ut interdum rutrum, libero sapien accumsan eros, sit amet cursus sem est accumsan magna. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nam a blandit purus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Fusce convallis ut turpis in vulputate. Quisque nibh metus, rhoncus at aliquam ut, hendrerit at arcu. Nunc lobortis ligula ac ullamcorper efficitur. Duis massa felis, ultrices vel elit et, ultricies blandit diam. Praesent pellentesque laoreet vehicula. Nunc ante nibh, sagittis in libero sed, porta accumsan enim. Aliquam laoreet quam ut purus efficitur efficitur."}
 // ];
 
+
+//==================================================
+//ROUTES
+//==================================================
+
+//INDEX ROUTE REDIRECT - Redirect to the index page
 app.get("/", function(req, res) {
     res.redirect("/blogposts");
 });
 
+//INDEX PAGE - Show all blog posts  
 app.get("/blogposts", function(req,res) {
     //Get all blogposts from the DB
     BlogPost.find({}, function(err, blogposts) {
@@ -63,10 +70,7 @@ app.get("/blogposts", function(req,res) {
     });
 });
 
-app.get("/blogposts/new", function(req,res) {
-    res.render("new");
-});
-
+// CREATE - Add new blog post to the DB
 app.post("/blogposts", function(req, res) {
     var title = req.body.title;
     var image = req.body.image;
@@ -85,6 +89,25 @@ app.post("/blogposts", function(req, res) {
         }
         else {
             res.redirect("/blogposts");
+        }
+    });
+});
+
+// NEW - Show form to create new blog post
+app.get("/blogposts/new", function(req,res) {
+    res.render("new");
+});
+
+//SHOW - Show a single blog post in more detail 
+app.get("/blogposts/:id", function(req, res) {
+    //find the blogpost with the given id
+    BlogPost.findById(req.params.id, function(err, foundBlogPost) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            //render show template with that blogpost 
+            res.render("show", {blogPost: foundBlogPost});
         }
     });
 });

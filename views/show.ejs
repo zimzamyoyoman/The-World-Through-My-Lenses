@@ -1,0 +1,15 @@
+<% include partials/header %>
+
+<h1> This is the show template! </h1>
+
+<div class="container-fluid mt-3">
+        <div class="card mx-3 my-3">
+            <img src="<%= blogPost.image %>" class="card-img-top" alt="<%=blogPost.quote %>"">
+            <div class="card-body">
+                <h4> <%=blogPost.title %> </h4>
+                <p class="card-text"> <%=blogPost.content %> </p>
+            </div>
+        </div>
+    </div>
+
+<% include partials/footer %>
