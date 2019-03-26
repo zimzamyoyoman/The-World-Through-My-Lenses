@@ -1,6 +1,35 @@
 var express = require("express");
 var app = express();
 var bodyParser = require("body-parser");
+var mongoose = require("mongoose");
+
+mongoose.connect("mongodb://localhost/blog");
+
+var blogSchema = new mongoose.Schema({
+    title: String,
+    image: String,
+    content: String,
+    type: String
+});
+
+var BlogPost = mongoose.model("BlogPost", blogSchema);
+
+var firstPost = new BlogPost ({
+    title: "First Post",
+    image: "https://images.unsplash.com/photo-1552416737-ec2f4962512e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1000&q=60",
+    content: "Curabitur tempus vitae justo sit amet tristique. Sed iaculis justo mi, quis feugiat elit condimentum convallis. Aliquam a condimentum diam, at dignissim lectus. Nulla facilisi. Curabitur tincidunt risus id eros faucibus, quis pharetra justo fringilla. Fusce non commodo odio, in condimentum sapien. Duis blandit et erat ac volutpat. Sed blandit sit amet enim vitae vestibulum. Integer facilisis lacus urna, blandit sagittis orci aliquet ut. Aliquam eget orci sit amet mauris malesuada faucibus eget rutrum diam. Phasellus faucibus vulputate felis, in facilisis ipsum lacinia vel. Vivamus quis porttitor purus.",
+    type: "Text"
+});
+
+firstPost.save(function(err, blogpost) {
+    if(err) {
+        console.log("Something went wrong!");
+    }
+    else {
+        console.log("We just saved a blog post to the db: ");
+        console.log(blogpost);
+    }
+});
 
 app.use(bodyParser.urlencoded({extended: true}));
 
@@ -14,7 +43,7 @@ var blogPosts = [
 ];
 
 app.get("/", function(req, res) {
-    res.redirect("/theworldthroughmylenses/blogposts");
+    res.redirect("/blogposts");
 });
 
 app.get("/blogposts", function(req,res) {
