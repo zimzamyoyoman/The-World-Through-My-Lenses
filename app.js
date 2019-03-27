@@ -1,7 +1,8 @@
-var express     = require("express"),
-    app         = express(),
-    bodyParser  = require("body-parser"),
-    mongoose    = require("mongoose");
+var express         = require("express"),
+    app             = express(),
+    bodyParser      = require("body-parser"),
+    mongoose        = require("mongoose"),
+    methodOverride  = require("method-override");
 
 mongoose.connect("mongodb://localhost/blog", {useNewUrlParser: true});
 
@@ -35,11 +36,12 @@ var BlogPost = mongoose.model("BlogPost", blogSchema);
 //         }
 //     });
 
-
-app.use(bodyParser.urlencoded({extended: true}));
-
-app.use(express.static("public"));
+// APP CONFIGURATION
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended: true}));
+app.use(express.static("public"));
+app.use(methodOverride("_method"));
+
 
 // var blogPosts = [
 //     {title: "Latest Post", image: "https://images.unsplash.com/photo-1552323543-4cffa4ffffe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80", content: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, quam id sagittis placerat, nibh orci feugiat felis, at varius velit est vel nibh. Quisque eget nunc consectetur, tincidunt orci vitae, ultricies tellus. Mauris et ipsum vehicula, facilisis ante tincidunt, accumsan leo. Interdum et malesuada fames ac ante ipsum primis in faucibus. Morbi blandit sem diam, ac ultrices nulla porttitor et. Donec ac consequat eros. Phasellus a velit libero. Integer eu enim eget ante luctus imperdiet non vel diam. Suspendisse ultrices purus sit amet dolor fermentum dictum sit amet ac quam. Donec tincidunt magna in turpis ornare bibendum. Sed iaculis, elit fringilla molestie consectetur, lectus sem aliquam orci, et elementum enim dolor vel magna."},
@@ -114,8 +116,29 @@ app.get("/blogposts/:id", function(req, res) {
 
 // EDIT ROUTE - Edit an existing blog post
 app.get("/blogposts/:id/edit", function(req, res) {
-    res.render("edit");
+    BlogPost.findById(req.params.id, function(err, foundBlogPost) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            //render show template with that blogpost 
+            res.render("edit", {blogPost: foundBlogPost});
+        }
+    });
 });
+
+//UPDATE ROUTE - Update an existing blog 
+app.put("/blogposts/:id", function(req, res) {
+    BlogPost.findByIdAndUpdate(req.params.id, req.body.blogpost, function(err, updatedBlogPost) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.redirect("/blogposts/" + req.params.id);
+        }
+    });
+});
+
 
 app.listen(4200, function() {
     console.log("Server is running on PORT 4200!");
