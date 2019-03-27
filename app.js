@@ -112,6 +112,11 @@ app.get("/blogposts/:id", function(req, res) {
     });
 });
 
+// EDIT ROUTE - Edit an existing blog post
+app.get("/blogposts/:id/edit", function(req, res) {
+    res.render("edit");
+});
+
 app.listen(4200, function() {
     console.log("Server is running on PORT 4200!");
 });
