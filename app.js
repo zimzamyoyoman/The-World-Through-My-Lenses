@@ -127,7 +127,7 @@ app.get("/blogposts/:id/edit", function(req, res) {
     });
 });
 
-//UPDATE ROUTE - Update an existing blog 
+// UPDATE ROUTE - Update an existing blog 
 app.put("/blogposts/:id", function(req, res) {
     BlogPost.findByIdAndUpdate(req.params.id, req.body.blogpost, function(err, updatedBlogPost) {
         if(err) {
@@ -135,6 +135,18 @@ app.put("/blogposts/:id", function(req, res) {
         }
         else {
             res.redirect("/blogposts/" + req.params.id);
+        }
+    });
+});
+
+// DELETE ROUTE - Delete an existing blog
+app.delete("/blogposts/:id", function(req, res) {
+    BlogPost.findByIdAndDelete(req.params.id, function(err) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            res.redirect("/blogposts");
         }
     });
 });
