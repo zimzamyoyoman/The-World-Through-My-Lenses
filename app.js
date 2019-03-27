@@ -1,8 +1,9 @@
-var express         = require("express"),
-    app             = express(),
-    bodyParser      = require("body-parser"),
-    mongoose        = require("mongoose"),
-    methodOverride  = require("method-override");
+var express             = require("express"),
+    app                 = express(),
+    bodyParser          = require("body-parser"),
+    mongoose            = require("mongoose"),
+    methodOverride      = require("method-override"),
+    expressSanitizer    = require("express-sanitizer");
 
 mongoose.connect("mongodb://localhost/blog", {useNewUrlParser: true});
 
@@ -39,6 +40,7 @@ var BlogPost = mongoose.model("BlogPost", blogSchema);
 // APP CONFIGURATION
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended: true}));
+app.use(expressSanitizer());
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
@@ -74,18 +76,20 @@ app.get("/blogposts", function(req,res) {
 
 // CREATE - Add new blog post to the DB
 app.post("/blogposts", function(req, res) {
-    var title = req.body.title;
-    var image = req.body.image;
-    var content = req.body.content;
-    var type = req.body.type;
-    var newBlogPost = {
-        title: title,
-        image: image,
-        content: content,
-        type: type 
-    }
+    // var title = req.body.title;
+    // var image = req.body.image;
+    // var content = req.body.content;
+    // var type = req.body.type;
+    // var newBlogPost = {
+    //     title: title,
+    //     image: image,
+    //     content: content,
+    //     type: type 
+    // }
+
+    req.body.blogpost.content=req.sanitize(req.body.blogpost.content);
     //Create a new blogpost and save to database
-    BlogPost.create(newBlogPost, function(err, newBlogPost) {
+    BlogPost.create(req.body.blogpost, function(err, newBlogPost) {
         if(err) {
             console.log(err);
         }
@@ -129,6 +133,7 @@ app.get("/blogposts/:id/edit", function(req, res) {
 
 // UPDATE ROUTE - Update an existing blog 
 app.put("/blogposts/:id", function(req, res) {
+    req.body.blogpost.content=req.sanitize(req.body.blogpost.content);
     BlogPost.findByIdAndUpdate(req.params.id, req.body.blogpost, function(err, updatedBlogPost) {
         if(err) {
             console.log(err);
