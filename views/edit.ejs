@@ -21,9 +21,19 @@
                             <textarea name="blogpost[content]" class="form-control" id="content" rows="10"><%=blogPost.content%></textarea>
                         </div>
 
-                        <div class="form-group">
+                        <!-- <div class="form-group">
                             <label for="type">Type</label>
                             <input name="blogpost[type]" type="text" class="form-control" id="type" value="<%=blogPost.type%>">
+                        </div> -->
+
+                        <div class="form-group">
+                            <label for="type">Type</label>
+                            <select class="form-control" id="type" name="blogpost[type]" value="<%=blogPost.type%>">
+                                <option> <%=blogPost.type%> </option>
+                                <option> Small Text </option>
+                                <option> Medium Text </option>
+                                <option> Long Text </option>
+                                <option> Only Image </option>
                         </div>
 
                         <button type="submit" class="btn btn-dark"> Confirm Changes </button>

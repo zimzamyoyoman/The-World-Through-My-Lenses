@@ -12,6 +12,12 @@ var blogSchema = new mongoose.Schema({
     image: String,
     content: String,
     type: String
+    // {
+    //     smallText: Boolean,
+    //     mediumText: Boolean,
+    //     largeText: Boolean,
+    //     imageOnly: Boolean
+    // }
 });
 
 var BlogPost = mongoose.model("BlogPost", blogSchema);
@@ -94,6 +100,7 @@ app.post("/blogposts", function(req, res) {
             console.log(err);
         }
         else {
+            console.log(req.body.blogpost.type);
             res.redirect("/blogposts");
         }
     });
