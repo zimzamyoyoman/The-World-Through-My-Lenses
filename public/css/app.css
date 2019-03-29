@@ -28,3 +28,7 @@ h1 {
 .item.large {
   width: 40rem;
 }
+
+#show {
+  width: 25rem;
+}
