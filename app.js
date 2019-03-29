@@ -100,7 +100,7 @@ app.post("/blogposts", function(req, res) {
             console.log(err);
         }
         else {
-            console.log(req.body.blogpost.type);
+            // console.log(req.body.blogpost.type);
             res.redirect("/blogposts");
         }
     });
