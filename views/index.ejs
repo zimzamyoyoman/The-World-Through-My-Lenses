@@ -1,7 +1,7 @@
 <% include partials/header %>
 
 <div id="masonry" class="container-fluid mt-3">
-<% blogPosts.forEach(function(blogPost) { %>
+<% blogPosts.reverse().forEach(function(blogPost) { %>
         
             <% switch (blogPost.type) {
                 case 'Small Text' : %>
