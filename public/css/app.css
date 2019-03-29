@@ -1,3 +1,11 @@
+.back {
+    background-color: #262626;
+}
+
+h1 {
+    color: white;
+}
+
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
@@ -5,32 +13,18 @@
 }
 
 .item {
-  width:  25rem;
-  /* height: 50px; */
+  width:  20rem;
   float: left;
-  /* background: #2296DD; */
-  /* border: 2px solid #333; */
 }
 
 .item.thumbnail {
   width: 50rem;
-  /* height: 100px; */
-  /* background: #cfcfcf */
 }
 
 .item.medium {
-  width:  50rem;
-  /* height: 50px; */
-  /* background: #A6E392 */
+  width:  30rem;
 }
 
 .item.large {
-  width:  75rem;
-  /* height: 100px; */
-  /* background: #D092E3 */
+  width: 40rem;
 }
-
-  /* .card {
-    width: 20rem;
-    float: left;
-} */
