@@ -32,3 +32,8 @@ h1 {
 #show {
   width: 25rem;
 }
+
+.footerbutton {
+  box-sizing: border-box;
+  display: block;
+}
