@@ -1,54 +1,8 @@
 <% include partials/header %>
 
-<div class="container-fluid mt-3">
-        <div id='masonry'>
-                <div class="mt-3 item">
-                            <div class="card mx-3 my-3">
-                                <img src="https://images.unsplash.com/photo-1552323543-4cffa4ffffe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top">
-                                <div class="card-body">
-                                    <h4> Latest Post </h4>
-                                    <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, quam id sagittis placerat, nibh orci feugiat felis, at varius velit est vel nibh. Quisque eget nunc consectetur, tincidunt orci. </p>
-                                    <a href="#" class="btn btn-primary"> See Blog Post </a>
-                                </div>
-                            </div>
-                        </div>
-        <div class="mt-3 item medium">
-                <div class="card mx-3 my-3">
-                    <img src="https://images.unsplash.com/photo-1552323543-4cffa4ffffe3?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80" class="card-img-top">
-                    <div class="card-body">
-                        <h4> Latest Post </h4>
-                        <p class="card-text"> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec iaculis, quam id sagittis placerat, nibh orci feugiat felis, at varius velit est vel nibh. Quisque eget nunc consectetur, tincidunt orci. </p>
-                        <a href="#" class="btn btn-primary"> See Blog Post </a>
-                    </div>
-                </div>
-            </div>
-      
-                <div class="mt-3 item">
-                        <div class="card mx-3 my-3">
-                            <img src="https://i.ytimg.com/vi/7PnltVxofI4/maxresdefault.jpg" class="card-img-top">
-                            <div class="card-body">
-                                <h4> How to Train Your Dragon 2  </h4>
-                                <p class="card-text"> It's been five years since Hiccup and Toothless unified the dragons and the Vikings on the island of Berk. They soon find themselves in a new battle against a mysterious Dragon Rider, Drago. </p>
-                                <a href="#" class="btn btn-primary"> See Blog Post </a>
-                            </div>
-                        </div>
-                    </div>
-      
-                    <div class="mt-3 item">
-                        <div class="card mx-3 my-3">
-                            <img src="https://i.ytimg.com/vi/7PnltVxofI4/maxresdefault.jpg" class="card-img-top">
-                            <div class="card-body">
-                                <h4> How to Train Your Dragon 2  </h4>
-                                <p class="card-text"> It's been five years since Hiccup and Toothless unified the dragons and the Vikings on the island of Berk. They soon find themselves in a new battle against a mysterious Dragon Rider, Drago. </p>
-                                <a href="#" class="btn btn-primary"> See Blog Post </a>
-                            </div>
-                        </div>
-                    </div>
-    
+<div id="masonry" class="container-fluid mt-3">
+<% blogPosts.forEach(function(blogPost) { %>
         
-      </div>
-<!-- <% blogPosts.forEach(function(blogPost) { %>
-        <div id="masonry">
             <% switch (blogPost.type) {
                 case 'Small Text' : %>
                     <div class="item">
@@ -115,16 +69,8 @@
                 </div>
             <% break; 
 
-            } %> -->
-        <!-- <div class="card mx-3 my-3">
-        <img src="<%= blogPost.image %>" class="card-img-top" alt="<%=blogPost.quote %>"">
-        <div class="card-body">
-            <h4> <%=blogPost.title %> </h4>
-            <p class="card-text"> <%=blogPost.content %> </p>
-            <a href="/blogposts/<%= blogPost._id %>" class="btn btn-primary"> See Blog Post </a>
-        </div> -->
-    <!-- </div>
-<% }) %> -->
+            } %>
+<% }) %>
 </div>
 
 
