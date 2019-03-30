@@ -13,16 +13,16 @@ h1 {
 }
 
 .item {
-  width:  20rem;
+  width:  15rem;
   float: left;
 }
 
 .item.thumbnail {
-  width: 50rem;
+  width: 30rem;
 }
 
 .item.medium {
-  width:  30rem;
+  width:  20rem;
 }
 
 .item.large {
@@ -36,4 +36,8 @@ h1 {
 .footerbutton {
   box-sizing: border-box;
   display: block;
+}
+
+#id {
+  width: 35rem;
 }
