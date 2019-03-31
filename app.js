@@ -10,11 +10,11 @@ var express                 = require("express"),
     passportLocalMongoose   = require("passport-local-mongoose"),
     Admin                   = require("./models/admin");
 
-
 mongoose.connect("mongodb://localhost/blog", {useNewUrlParser: true});
 
 // APP CONFIGURATION
 app.set("view engine", "ejs");
+app.use(bodyParser.urlencoded({extended: true}));
 
 // Passport and User Auth
 app.use(require("express-session")({
@@ -26,18 +26,16 @@ app.use(require("express-session")({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.serializeUser(Admin.serializeUser());
+passport.serializeUse(Admin.serializeUser());
 passport.deserializeUser(Admin.deserializeUser());
 
-
 // Other
-app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(express.static("public"));
 app.use(methodOverride("_method"));
 
 //==================================================
-//ROUTES
+// ROUTES
 //==================================================
 
 //INDEX ROUTE REDIRECT - Redirect to the index page
@@ -45,7 +43,7 @@ app.get("/", function(req, res) {
     res.redirect("/blogposts");
 });
 
-//INDEX PAGE - Show all blog posts  
+// INDEX PAGE - Show all blog posts  
 app.get("/blogposts", function(req,res) {
     //Get all blogposts from the DB
     BlogPost.find({}, function(err, blogposts) {
@@ -89,7 +87,7 @@ app.get("/blogposts/new", function(req,res) {
     res.render("new");
 });
 
-//SHOW - Show a single blog post in more detail 
+// SHOW - Show a single blog post in more detail 
 app.get("/blogposts/:id", function(req, res) {
     //find the blogpost with the given id
     BlogPost.findById(req.params.id, function(err, foundBlogPost) {
@@ -139,6 +137,25 @@ app.delete("/blogposts/:id", function(req, res) {
             res.redirect("/blogposts");
         }
     });
+});
+
+// ADMIN REGISTRATION 
+// GET - Show sign up form 
+app.get("/adminregister", function(req, res) {
+    res.render("adminregister");
+});
+
+// POST - Add user 
+app.post("/adminregister", function(req, res) {
+    User.register(new User({username: req.body.username}), req.body.password, function(err, admin) {
+        if(err) {
+            console.log(err);
+        }
+        passport.authenticate("local")(req, res, function() {
+            res.redirect("/");
+        })
+    })
+    
 });
 
 
