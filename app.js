@@ -1,15 +1,36 @@
-var express             = require("express"),
-    app                 = express(),
-    bodyParser          = require("body-parser"),
-    mongoose            = require("mongoose"),
-    methodOverride      = require("method-override"),
-    expressSanitizer    = require("express-sanitizer"),
-    BlogPost            = require("./models/blogposts");
+var express                 = require("express"),
+    app                     = express(),
+    bodyParser              = require("body-parser"),
+    mongoose                = require("mongoose"),
+    methodOverride          = require("method-override"),
+    expressSanitizer        = require("express-sanitizer"),
+    BlogPost                = require("./models/blogposts"),
+    passport                = require("passport");
+    LocalStrategy           = require("passport-local"),
+    passportLocalMongoose   = require("passport-local-mongoose"),
+    Admin                   = require("./models/admin");
+
 
 mongoose.connect("mongodb://localhost/blog", {useNewUrlParser: true});
 
 // APP CONFIGURATION
 app.set("view engine", "ejs");
+
+// Passport and User Auth
+app.use(require("express-session")({
+    secret: "Test Secret",
+    resave: false,
+    saveUninitialized: false
+}))
+
+app.use(passport.initialize());
+app.use(passport.session());
+
+passport.serializeUser(Admin.serializeUser());
+passport.deserializeUser(Admin.deserializeUser());
+
+
+// Other
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(expressSanitizer());
 app.use(express.static("public"));
