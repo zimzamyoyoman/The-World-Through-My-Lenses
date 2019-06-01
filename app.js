@@ -140,7 +140,7 @@ app.delete("/blogposts/:id", function(req, res) {
     });
 });
 
-// ADMIN REGISTRATION 
+// USER/ADMIN REGISTRATION 
 // GET - Show sign up form 
 app.get("/userregister", function(req, res) {
     res.render("userregister");
@@ -159,6 +159,20 @@ app.post("/userregister", function(req, res) {
         });
     })
     
+});
+
+// USER/ADMIN LOGIN
+// GET - Show login up form 
+app.get("/login", function(req, res) {
+    res.render("login");
+});
+
+// POST - Add user 
+app.post("/login", passport.authenticate("local", 
+    {   
+        successRedirect: "/",
+        failureRedirect: "/login"
+    }), function(req, res) {
 });
 
 
