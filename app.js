@@ -8,7 +8,7 @@ var express                 = require("express"),
     passport                = require("passport");
     LocalStrategy           = require("passport-local"),
     passportLocalMongoose   = require("passport-local-mongoose"),
-    Admin                   = require("./models/admin");
+    User                    = require("./models/user");
 
 mongoose.connect("mongodb://localhost/blog", {useNewUrlParser: true});
 
@@ -25,9 +25,10 @@ app.use(require("express-session")({
 
 app.use(passport.initialize());
 app.use(passport.session());
+passport.use(new LocalStrategy(User.authenticate()));
 
-passport.serializeUse(Admin.serializeUser());
-passport.deserializeUser(Admin.deserializeUser());
+passport.serializeUser(User.serializeUser());
+passport.deserializeUser(User.deserializeUser());
 
 // Other
 app.use(expressSanitizer());
@@ -141,19 +142,21 @@ app.delete("/blogposts/:id", function(req, res) {
 
 // ADMIN REGISTRATION 
 // GET - Show sign up form 
-app.get("/adminregister", function(req, res) {
-    res.render("adminregister");
+app.get("/userregister", function(req, res) {
+    res.render("userregister");
 });
 
 // POST - Add user 
-app.post("/adminregister", function(req, res) {
-    User.register(new User({username: req.body.username}), req.body.password, function(err, admin) {
+app.post("/userregister", function(req, res) {
+    var newUser = new User({username: req.body.username});
+    User.register(newUser, req.body.password, function(err, user) {
         if(err) {
             console.log(err);
+            return res.render("userregister")
         }
         passport.authenticate("local")(req, res, function() {
             res.redirect("/");
-        })
+        });
     })
     
 });
