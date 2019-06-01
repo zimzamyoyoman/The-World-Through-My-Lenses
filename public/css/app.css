@@ -41,3 +41,20 @@ h1 {
 #id {
   width: 35rem;
 }
+
+/* unvisited link */
+a:link {
+  color: black;
+}
+
+/* visited link */
+a:visited {
+  color: black;
+}
+
+#userportal {
+  width: 800px;
+  height: 380px;
+  padding: 20px;
+  color: white;
+}

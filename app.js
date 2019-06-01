@@ -161,7 +161,8 @@ app.post("/userregister", function(req, res) {
     
 });
 
-// USER/ADMIN LOGIN
+// USER LOGIN
+
 // GET - Show login up form 
 app.get("/login", function(req, res) {
     res.render("login");
@@ -174,6 +175,21 @@ app.post("/login", passport.authenticate("local",
         failureRedirect: "/login"
     }), function(req, res) {
 });
+
+// USER LOGOUT 
+
+// GET - Logout Function
+app.get("/logout", function(req, res) {
+    req.logout();
+    res.redirect("/");
+});
+
+// USER PORTAL PAGE
+
+app.get("/userportal", function(req, res) {
+    res.render("userportal");
+});
+
 
 
 app.listen(4200, function() {
